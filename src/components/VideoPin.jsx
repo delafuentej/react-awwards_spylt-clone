@@ -28,11 +28,12 @@ const VideoPin = () => {
   return (
     <div className="vd-pin">
       <div
-        className={`${
-          isMobile
-            ? "size-full video-box circle-clip-mobile"
-            : "size-full video-box circle-clip-path"
-        }`}
+        style={{
+          clipPath: isMobile
+            ? "circle(100% at 50% 50%)"
+            : "circle(6% at 50% 50%)",
+        }}
+        className="size-full video-box"
       >
         <video src={videos.pinVideo} playsInline muted loop autoPlay />
         <div className="abs-center md:scale-100 scale-200">

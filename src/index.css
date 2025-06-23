@@ -53,12 +53,12 @@ body::-webkit-scrollbar {
     clip-path: polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%);
   }
 
-  .circle-clip-path {
+  /* .circle-clip-path {
     clip-path: circle(4% at 50% 50%);
   }
   .circle-clip-mobile {
     clip-path: circle(100% at 50% 50%);
-  }
+  } */
 
   .flex-center {
     @apply flex justify-center items-center;
