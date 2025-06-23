@@ -4,6 +4,11 @@
 
 Ready to build a website worthy of the **Awwwards Site of the Day**? This project guides you through crafting a visually striking, high-performance web experience using **React 19**, **Tailwind CSS v4**, and **GSAP**. Whether you're building a digital agency portfolio or an experimental creative site, this project has the tools and techniques to make your site stand out.
 
+## 🌐 Live Demo
+
+Experience the Interactive Web Clone:
+🔗 https://react-awwards-spylt-clone.vercel.app/
+
 ---
 
 ## 🚀 Introduction
@@ -49,8 +54,8 @@ This website includes:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/FullStackEmpire/gsap-awwwards-website.git
-cd gsap-awwwards-website
+git clone https://github.com/delafuentej/react-awwards_spylt-clone.git
+cd react-awwards_spylt-clone
 
 # 2. Install dependencies
 npm install
