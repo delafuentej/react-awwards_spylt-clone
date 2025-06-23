@@ -22,6 +22,8 @@ const App = () => {
   });
   return (
     <main>
+      {/* to try to solve the bug in build phase */}
+      <span className="hidden circle-clip-path circle-clip-mobile" />
       <Navbar />
       {/* init blocks */}
       <div id="smooth-wrapper">

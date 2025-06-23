@@ -50,8 +50,6 @@ const VideoPin = () => {
           </div>
         </div>
       </div>
-      {/*  */}
-      <span className="hidden circle-clip-path circle-clip-mobile" />
     </div>
   );
 };
