@@ -14,12 +14,13 @@ const VideoPin = () => {
           start: "-15% top",
           end: "200% top",
           scrub: 1.5,
-          markers: true,
+          // markers: true,
           pin: true,
         },
       });
       animation.to(".video-box", {
         clipPath: "circle(100% at 50% 50%)",
+        WebkitClipPath: "circle(100% at 50% 50%)",
         ease: "power1.inOut",
       });
     }
@@ -27,8 +28,10 @@ const VideoPin = () => {
   return (
     <div className="vd-pin">
       <div
-        className={`size-full video-box ${
-          isMobile ? "circle-clip-mobile" : "circle-clip-path"
+        className={`${
+          isMobile
+            ? "size-full video-box circle-clip-mobile"
+            : "size-full video-box circle-clip-path"
         }`}
       >
         <video src={videos.pinVideo} playsInline muted loop autoPlay />
@@ -47,6 +50,8 @@ const VideoPin = () => {
           </div>
         </div>
       </div>
+      {/*  */}
+      <span className="hidden circle-clip-path circle-clip-mobile" />
     </div>
   );
 };
