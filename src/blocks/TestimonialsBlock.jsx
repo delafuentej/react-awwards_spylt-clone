@@ -2,14 +2,20 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { testimonialCards } from "../constants";
+import {
+  animateWithGsap2,
+  animateWithGsapTimeline2,
+} from "../utils/animations";
 
 const TestimonialsBlock = () => {
   useGSAP(() => {
+    // Establecer margen inicial
     gsap.set(".testimonials-block", {
       marginTop: "-140vh",
     });
 
-    const animation = gsap.timeline({
+    // 👉 Crear timeline y scrollTrigger para los títulos
+    const titleTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".testimonials-block",
         start: "top bottom",
@@ -18,42 +24,37 @@ const TestimonialsBlock = () => {
         // markers: true,
       },
     });
-    animation
-      .to(".testimonials-block .first-title", {
-        xPercent: 70,
-      })
-      .to(
-        ".testimonials-block .second-title",
-        {
-          xPercent: 25,
-        },
-        "<"
-      )
-      .to(
-        ".testimonials-block .third-title",
-        {
-          xPercent: -50,
-        },
-        "<"
-      );
 
-    const pinAnimation = gsap.timeline({
-      scrollTrigger: {
+    animateWithGsapTimeline2(
+      titleTimeline,
+      [
+        ".testimonials-block .first-title",
+        ".testimonials-block .second-title",
+        ".testimonials-block .third-title",
+      ],
+      [{ xPercent: 70 }, { xPercent: 25 }, { xPercent: -50 }],
+      0.3 // stagger negativo para que se solapen ligeramente
+    );
+
+    // 👉 Animar tarjetas con animateWithGsap2
+    animateWithGsap2(
+      "from",
+      ".vd-card",
+      {
+        yPercent: 150,
+        rotation: 20,
+        stagger: 0.2,
+        ease: "power1.inOut",
+        duration: 1,
+      },
+      {
         trigger: ".testimonials-block",
         start: "10% top",
         end: "200% top",
         scrub: 1.5,
         pin: true,
-        // markers: true,
-      },
-    });
-    pinAnimation.from(".vd-card", {
-      yPercent: 150,
-      rotation: 20,
-      stagger: 0.2,
-      ease: "power1.inOut",
-      duration: 1,
-    });
+      }
+    );
   });
 
   const videoRef = useRef([]);
@@ -116,3 +117,59 @@ const TestimonialsBlock = () => {
 };
 
 export default TestimonialsBlock;
+
+/*
+
+ // useGSAP(() => {
+    gsap.set(".testimonials-block", {
+      marginTop: "-140vh",
+    });
+
+    const animation = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".testimonials-block",
+        start: "top bottom",
+        end: "200% top",
+        scrub: true,
+        // markers: true,
+      },
+    });
+    animation
+      .to(".testimonials-block .first-title", {
+        xPercent: 70,
+      })
+      .to(
+        ".testimonials-block .second-title",
+        {
+          xPercent: 25,
+        },
+        "<"
+      )
+      .to(
+        ".testimonials-block .third-title",
+        {
+          xPercent: -50,
+        },
+        "<"
+      );
+
+    const pinAnimation = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".testimonials-block",
+        start: "10% top",
+        end: "200% top",
+        scrub: 1.5,
+        pin: true,
+        // markers: true,
+      },
+    });
+    pinAnimation.from(".vd-card", {
+      yPercent: 150,
+      rotation: 20,
+      stagger: 0.2,
+      ease: "power1.inOut",
+      duration: 1,
+    });
+  });
+
+*/

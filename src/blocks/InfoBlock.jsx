@@ -61,6 +61,7 @@ const InfoBlock = () => {
       ease: "circ.inOut",
     });
   });
+
   return (
     <section className="info-block">
       <img
@@ -74,6 +75,7 @@ const InfoBlock = () => {
         <div className="relative inline-block md:translate-y-20">
           <div className="general-title relative flex flex-col gap-24">
             {/* title + clipPath */}
+
             <div className="overflow-hidden place-self-start">
               <h1 className="info-title">It still does</h1>
             </div>
@@ -82,10 +84,10 @@ const InfoBlock = () => {
                 <h2 className="text-milk-yellow">Body good</h2>
               </div>
             </div>
-
             <div></div>
           </div>
         </div>
+
         {/* paragraph */}
         <div className="flex md:justify-center items-center translate-y-5">
           <div className="md:max-w-xs max-w-md">
@@ -95,7 +97,9 @@ const InfoBlock = () => {
             </p>
           </div>
         </div>
+
         {/* info box */}
+
         <div className="info-box">
           <div className="list-wrapper">
             {list.map((item, index) => (

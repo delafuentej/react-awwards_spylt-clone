@@ -86,22 +86,21 @@ body::-webkit-scrollbar {
       @apply relative z-10 w-full h-full flex flex-col 2xl:justify-center items-center translate-y-10 2xl:pt-0 md:pt-32 pt-24;
 
       .hero-title {
-        @apply text-dark-brown 2xl:text-[8.5rem] md:text-[6.5rem] text-[3.3rem] font-bold uppercase leading-[9vw] tracking-[-.10vw] 2xl:mb-0 mb-5;
+        @apply text-dark-brown 2xl:text-[8.5rem] md:text-[6rem] text-[3.5rem] font-bold uppercase leading-[9vw] tracking-[-.10vw] 2xl:mb-0 mb-5;
       }
 
       .hero-text-scroll {
-        @apply rotate-[-3deg] mb-8 border-[.5vw] border-milk;
+        @apply rotate-[-3deg] mb-8 border-[.5vw] border-milk 2xl:text-[8.5rem] md:text-[6rem] text-[2rem];
 
         .hero-subtitle {
           @apply bg-mid-brown;
         }
 
         h1 {
-          @apply uppercase 2xl:text-[8.5rem] md:text-[6.5rem] text-[3.3rem] font-bold text-[#fce1cd] leading-[9vw] tracking-[-.10vw] 2xl:px-[1.2vw] px-3 2xl:pb-[1vw] pb-5 2xl:py-0 py-3;
+          @apply uppercase 2xl:text-[8.5rem] md:text-[6rem] text-[3.5rem] font-bold text-[#fce1cd] leading-[9vw] tracking-[-.10vw] 2xl:px-[1.2vw] px-3 2xl:pb-[1vw] pb-5 2xl:py-0 py-3;
         }
       }
-
-      h2 {
+      ext-[3.5rem] md:text-[6rem] h2 {
         @apply font-paragraph text-dark-brown text-center md:max-w-lg max-w-sm px-5 md:text-lg leading-[115%] mt-3;
       }
 
@@ -115,8 +114,7 @@ body::-webkit-scrollbar {
     @apply bg-[#7f3b2d] text-milk min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
 
     .msg-wrapper {
-      @apply 2xl:text-[8rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.10vw] flex flex-col justify-center items-center md:gap-24 gap-14;
-
+      @apply 2xl:text-[8rem] md:text-7xl text-4xl font-bold uppercase leading-[9vw] tracking-[-.10vw] flex flex-col justify-center items-center md:gap-24 gap-14;
       h1:first-of-type {
         @apply 2xl:max-w-4xl md:max-w-2xl max-w-xs text-center  text-[#faeade10];
       }
@@ -132,7 +130,7 @@ body::-webkit-scrollbar {
 
     h1,
     h2 {
-      @apply leading-none;
+      @apply leading-none text-[3.5rem] md:text-[6rem];
     }
 
     .msg-text-scroll {
@@ -174,7 +172,7 @@ body::-webkit-scrollbar {
         }
 
         h1 {
-          @apply absolute md:bottom-10 md:left-10 bottom-5 left-5 text-milk md:text-6xl text-3xl font-semibold uppercase tracking-tighter;
+          @apply absolute md:bottom-10 md:left-10 bottom-5 left-5 text-milk md:text-6xl  font-semibold uppercase tracking-tighter;
         }
       }
     }

@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ClipPathTitle, VideoPin } from "../components";
+import { animateWithGsapTimeline } from "../utils/animations";
 
 const BenefitBlock = () => {
   useGSAP(() => {
@@ -11,36 +12,29 @@ const BenefitBlock = () => {
         start: "top 60%",
         end: "top top",
         scrub: 1.5,
-        // makers: true,
         toggleActions: "play reset complete reverse",
       },
     });
-    revealTimeline
-      .to(".benefit-block .first-title", {
+
+    const titles = [
+      ".benefit-block .first-title",
+      ".benefit-block .second-title",
+      ".benefit-block .third-title",
+      ".benefit-block .fourth-title",
+    ];
+
+    animateWithGsapTimeline(
+      revealTimeline,
+      titles,
+      {
         duration: 1,
         opacity: 1,
         clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      })
-      .to(".benefit-block .second-title", {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      })
-      .to(".benefit-block .third-title", {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      })
-      .to(".benefit-block .fourth-title", {
-        duration: 1,
-        opacity: 1,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "circ.out",
-      });
+      },
+      0.2
+    );
   });
+
   return (
     <section className="benefit-block">
       <div className="container mx-auto pt-20">
@@ -100,3 +94,47 @@ const BenefitBlock = () => {
 };
 
 export default BenefitBlock;
+
+/*
+
+  useGSAP(() => {
+    const revealTimeline = gsap.timeline({
+      delay: 1,
+      scrollTrigger: {
+        trigger: ".benefit-block",
+        start: "top 60%",
+        end: "top top",
+        scrub: 1.5,
+        // makers: true,
+        toggleActions: "play reset complete reverse",
+      },
+    });
+    revealTimeline
+      .to(".benefit-block .first-title", {
+        duration: 1,
+        opacity: 1,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "circ.out",
+      })
+      .to(".benefit-block .second-title", {
+        duration: 1,
+        opacity: 1,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "circ.out",
+      })
+      .to(".benefit-block .third-title", {
+        duration: 1,
+        opacity: 1,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "circ.out",
+      })
+      .to(".benefit-block .fourth-title", {
+        duration: 1,
+        opacity: 1,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "circ.out",
+      });
+  });
+
+
+*/

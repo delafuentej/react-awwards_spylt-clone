@@ -1,77 +1,149 @@
 import gsap from "gsap";
-import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import { splitText, animateWithGsap } from "../utils/animations";
 
 const MessageBlock = () => {
+  // useGSAP(() => {
+  //   const firsMsgSplit = SplitText.create(".first-message", {
+  //     type: "words",
+  //   });
+
+  //   const secondMsgSplit = SplitText.create(".second-message", {
+  //     type: "words",
+  //   });
+  //   const paragraphSplit = SplitText.create(".message-content p", {
+  //     type: "words, lines",
+  //     linesClass: "paragraph-line",
+  //   });
+
+  //   gsap.to(firsMsgSplit.words, {
+  //     color: "#faeade",
+  //     ease: "power1.in",
+  //     stagger: 1,
+  //     scrollTrigger: {
+  //       trigger: ".message-content",
+  //       // markers: false,
+  //       start: "top center",
+  //       end: "40% center",
+  //       scrub: true,
+  //     },
+  //   });
+
+  //   gsap.to(secondMsgSplit.words, {
+  //     color: "#faeade",
+  //     ease: "power1.in",
+  //     stagger: 1,
+  //     scrollTrigger: {
+  //       trigger: ".second-message",
+  //       // markers: false,
+  //       start: "top center",
+  //       end: "bottom center",
+  //       scrub: true,
+  //     },
+  //   });
+
+  //   const revealTimeline = gsap.timeline({
+  //     delay: 1,
+  //     scrollTrigger: {
+  //       trigger: ".msg-text-scroll",
+  //       // markers: false,
+  //       toggleActions: "play reset complete reverse",
+  //       start: "top 60%",
+  //     },
+  //   });
+  //   revealTimeline.to(
+  //     ".msg-text-scroll",
+  //     {
+  //       duration: 1,
+  //       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+  //       ease: "circ.inOut",
+  //     },
+  //     "+=1.5"
+  //   );
+
+  //   const paragraphTimeline = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: ".message-content p",
+  //       // markers: false,
+  //       toggleActions: "play reset complete reverse",
+  //       start: "top center",
+  //     },
+  //   });
+  //   paragraphTimeline.from(paragraphSplit.words, {
+  //     duration: 1,
+  //     yPercent: 300,
+  //     rotate: 3,
+  //     ease: "power1.inOut",
+
+  //     stagger: 0.01,
+  //   });
+  // }, []);
   useGSAP(() => {
-    const firsMsgSplit = SplitText.create(".first-message", {
-      type: "words",
-    });
+    // Split text
+    const firstMsg = splitText(".first-message", "words");
+    const secondMsg = splitText(".second-message", "words");
+    const paragraph = splitText(".message-content p", "words, lines");
 
-    const secondMsgSplit = SplitText.create(".second-message", {
-      type: "words",
-    });
-    const paragraphSplit = SplitText.create(".message-content p", {
-      type: "words, lines",
-      linesClass: "paragraph-line",
-    });
-
-    gsap.to(firsMsgSplit.words, {
-      color: "#faeade",
-      ease: "power1.in",
-      stagger: 1,
-      scrollTrigger: {
+    // Color scroll animation for first message
+    animateWithGsap(
+      firstMsg.words,
+      {
+        color: "#faeade",
+        ease: "power1.in",
+        stagger: 1,
+      },
+      {
         trigger: ".message-content",
-        // markers: false,
         start: "top center",
         end: "40% center",
         scrub: true,
-      },
-    });
+      }
+    );
 
-    gsap.to(secondMsgSplit.words, {
-      color: "#faeade",
-      ease: "power1.in",
-      stagger: 1,
-      scrollTrigger: {
+    // Color scroll animation for second message
+    animateWithGsap(
+      secondMsg.words,
+      {
+        color: "#faeade",
+        ease: "power1.in",
+        stagger: 1,
+      },
+      {
         trigger: ".second-message",
-        // markers: false,
         start: "top center",
         end: "bottom center",
         scrub: true,
-      },
-    });
+      }
+    );
 
-    const revealTimeline = gsap.timeline({
-      delay: 1,
-      scrollTrigger: {
+    // Reveal msg-text-scroll (clip-path animation)
+    animateWithGsap(
+      ".msg-text-scroll",
+      {
+        duration: 1,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "circ.inOut",
+        delay: 1.5,
+      },
+      {
         trigger: ".msg-text-scroll",
-        // markers: false,
         toggleActions: "play reset complete reverse",
         start: "top 60%",
-      },
-    });
-    revealTimeline.to(".msg-text-scroll", {
-      duration: 1,
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "circ.inOut",
-    });
+      }
+    );
 
-    const paragraphTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".message-content p",
-        // markers: false,
-        toggleActions: "play reset complete reverse",
-        start: "top center",
-      },
-    });
-    paragraphTimeline.from(paragraphSplit.words, {
+    // Paragraph reveal
+    gsap.from(paragraph.words, {
       duration: 1,
       yPercent: 300,
       rotate: 3,
       ease: "power1.inOut",
-
       stagger: 0.01,
+      scrollTrigger: {
+        trigger: ".message-content p",
+        toggleActions: "play reset complete reverse",
+        start: "top center",
+      },
     });
   }, []);
   return (
@@ -91,8 +163,9 @@ const MessageBlock = () => {
             </div>
 
             <h1 className="second-message w-screen col-center">
-              <div className="text-nowrap"> your future with every</div>
-              <div className="text-nowrap"> gulp of Perfect Protein</div>
+              <div className="text-nowrap"> your future with</div>
+              <div className="text-nowrap">every gulp of</div>
+              <div className="text-nowrap">Perfect Protein</div>
             </h1>
           </div>
           <div className="flex-center md:mt-20 mt-10">

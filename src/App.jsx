@@ -1,4 +1,4 @@
-import { ScrollTrigger, ScrollSmoother } from "gsap/all";
+import { ScrollTrigger, ScrollSmoother, SplitText } from "gsap/all";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Navbar, Footer } from "./components";
@@ -11,7 +11,7 @@ import {
   TestimonialsBlock,
 } from "./blocks";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger, SplitText);
 
 const App = () => {
   useGSAP(() => {
