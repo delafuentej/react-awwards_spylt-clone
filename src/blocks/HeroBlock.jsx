@@ -1,13 +1,14 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
+import { SplitText } from "gsap/all";
 import { images, videos } from "../utils";
 
-import {
-  splitText,
-  animateWithGsapTimeline,
-  animateWithGsap,
-} from "../utils/animations";
+// import {
+//   splitText,
+//   animateWithGsapTimeline,
+//   animateWithGsap,
+// } from "../utils/animations";
 
 const HeroBlock = () => {
   const isMobile = useMediaQuery({
@@ -17,50 +18,97 @@ const HeroBlock = () => {
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
   useGSAP(() => {
-    // Split characters of the title
-    const titleSplit = splitText(".hero-title");
-
-    // Timeline para entrada inicial
-    const introTimeline = gsap.timeline({ delay: 1 });
-
-    animateWithGsapTimeline(introTimeline, [".hero-content"], {
+    const titleSplit = SplitText.create(".hero-title", {
+      type: "chars",
+    });
+    const tl = gsap.timeline({
+      delay: 1,
+    });
+    tl.to(".hero-content", {
       opacity: 1,
       y: 0,
-    });
+      ease: "power1.inOut",
+    })
+      .to(
+        ".hero-text-scroll",
+        {
+          duration: 1,
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        },
+        "-=0.5"
+      )
+      .from(
+        titleSplit.chars,
+        {
+          yPercent: 200,
+          stagger: 0.02,
+          ease: "powe2.out",
+        },
+        "-=0.5"
+      );
 
-    animateWithGsapTimeline(introTimeline, [".hero-text-scroll"], {
-      duration: 1,
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "circ.out",
-    });
-
-    introTimeline.from(
-      titleSplit.chars,
-      {
-        yPercent: 200,
-        stagger: 0.02,
-        ease: "power2.out",
-      },
-      "-=0.5"
-    );
-
-    // Animación de scroll (hero-container)
-    animateWithGsap(
-      ".hero-container",
-      {
-        rotate: 7,
-        scale: 0.85,
-        yPercent: 30,
-        ease: "power1.inOut",
-      },
-      {
+    const heroTimeline = gsap.timeline({
+      scrollTrigger: {
         trigger: ".hero-container",
         start: "1% top",
         end: "bottom top",
+        // markers: false,
         scrub: true,
-      }
-    );
-  });
+      },
+    });
+    heroTimeline.to(".hero-container", {
+      rotate: 7,
+      scale: 0.85,
+      yPercent: 30,
+      ease: "power1.inOut",
+    });
+  }, []);
+  // useGSAP(() => {
+  //   // Split characters of the title
+  //   const titleSplit = splitText(".hero-title");
+
+  //   // Timeline para entrada inicial
+  //   const introTimeline = gsap.timeline({ delay: 1 });
+
+  //   animateWithGsapTimeline(introTimeline, [".hero-content"], {
+  //     opacity: 1,
+  //     y: 0,
+  //   });
+
+  //   animateWithGsapTimeline(introTimeline, [".hero-text-scroll"], {
+  //     duration: 1,
+  //     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+  //     ease: "circ.out",
+  //   });
+
+  //   introTimeline.from(
+  //     titleSplit.chars,
+  //     {
+  //       yPercent: 200,
+  //       stagger: 0.02,
+  //       ease: "power2.out",
+  //     },
+  //     "-=0.5"
+  //   );
+
+  //   // Animación de scroll (hero-container)
+  //   animateWithGsap(
+  //     ".hero-container",
+  //     {
+  //       rotate: 7,
+  //       scale: 0.85,
+  //       yPercent: 30,
+  //       ease: "power1.inOut",
+  //     },
+  //     {
+  //       trigger: ".hero-container",
+  //       start: "1% top",
+  //       end: "bottom top",
+  //       scrub: true,
+  //     }
+  //   );
+  // });
   return (
     <section className="bg-main-bg">
       <div className="hero-container">
