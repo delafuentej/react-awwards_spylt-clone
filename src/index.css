@@ -135,7 +135,7 @@ body::-webkit-scrollbar {
     }
 
     .msg-text-scroll {
-      @apply rotate-[3deg] 2xl:translate-y-5 -translate-y-5 absolute z-10 border-[.5vw] border-[#7f3b2d];
+      @apply rotate-[3deg] 2xl:translate-y-5 -translate-y-5 absolute top-3/8  md:top-3/9  lg:top-3/11 text-[3rem] z-10 border-[.5vw] border-[#7f3b2d];
     }
   }
 
